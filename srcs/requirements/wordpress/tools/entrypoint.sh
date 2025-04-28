@@ -6,13 +6,15 @@ cd /var/www/html
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
 ./wp-cli.phar core download --allow-root
-./wp-cli.phar config create --dbname=${DB_NAME} \
+./wp-cli.phar config create \
+	--dbname=${DB_NAME} \
 	--dbuser=${MYSQL_USER} \
 	--dbpass=${MYSQL_PWD} \
 	--dbhost=${MYSQL_HOST} \
 	--allow-root
 
-./wp-cli.phar core install --url=localhost \
+./wp-cli.phar core install \
+	--url=${WP_URL} \
 	--title=${WP_TITLE} \
 	--admin_user=${WP_ADMIN} \
 	--admin_password=${WP_ADMIN_PWD} \
