@@ -40,7 +40,15 @@ services:
 
 volumes:
   mdb:
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: /home/eamsalem/data/mysql
   wp:
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: /home/eamsalem/data/wordpress
 
 networks:
   inception_net:
