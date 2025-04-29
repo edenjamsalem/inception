@@ -6,11 +6,14 @@ up:
 down: 
 	docker compose -f ./srcs/docker-compose.yml down
 
+start: 
+	docker compose -f ./srcs/docker-compose.yml start
+
 stop: 
 	docker compose -f ./srcs/docker-compose.yml stop
 
-start: 
-	docker compose -f ./srcs/docker-compose.yml start
+build:
+	docker compose -f ./srcs/docker-compose.yml build
 
 status:
 	@docker ps -a
@@ -19,4 +22,4 @@ status:
 	@echo
 	@docker volume ls
 
-.PHONY: up down stop start status clean
+.PHONY: up down stop start status build
