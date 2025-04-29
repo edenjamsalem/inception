@@ -2,6 +2,8 @@ services:
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
+    volumes:
+      - mdb:/var/lib/mysql
     expose:
       - "3306"
     env_file:
@@ -13,10 +15,10 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    volumes:
+      - wp:/var/www/html
     ports:
       - "443:443"
-    volumes:
-      - ./wp:/var/www/html
     env_file:
       - .env
     networks:
@@ -27,7 +29,7 @@ services:
     container_name: wp-php
     build: requirements/wordpress
     volumes:
-      - ./wp:/var/www/html
+      - wp:/var/www/html
     expose:
       - "9000"
     env_file:
@@ -35,6 +37,10 @@ services:
     networks:
       - inception_net
     restart: on-failure
+
+volumes:
+  mdb:
+  wp:
 
 networks:
   inception_net:
